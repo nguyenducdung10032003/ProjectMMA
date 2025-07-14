@@ -246,7 +246,6 @@ const StudyPage = () => {
     }
   };
 
-  // Speaking - Play audio
   const playAudio = async (url) => {
     if (!url) {
       Alert.alert("Error", "No audio available for this news item");
@@ -350,7 +349,6 @@ const StudyPage = () => {
       console.error("Stop playback error:", error);
     }
   };
-  // Speaking - Record audio
   const startRecording = async () => {
     try {
       await Audio.requestPermissionsAsync();
@@ -385,9 +383,7 @@ const StudyPage = () => {
     }));
   };
 
-  // Save word to notebook
   const saveToNotebook = (wordData) => {
-    // Implement saving to user's notebook
     alert(`Saved "${wordData.japanese[0].word}" to your notebook`);
   };
 
@@ -468,85 +464,6 @@ const StudyPage = () => {
       )}
     </View>
   );
-
-  // const renderKanjiTab = () => (
-  //   <View style={styles.tabContent}>
-  //     <View style={styles.searchContainer}>
-  //       <TextInput
-  //         style={styles.searchInput}
-  //         placeholder="Search kanji (1 character only)..."
-  //         value={searchTerm}
-  //         onChangeText={setSearchTerm}
-  //         onSubmitEditing={searchKanji}
-  //         maxLength={1}
-  //       />
-  //       <TouchableOpacity
-  //         style={styles.searchButton}
-  //         onPress={searchKanji}
-  //         disabled={isLoading}
-  //       >
-  //         {isLoading ? (
-  //           <ActivityIndicator size="small" color="white" />
-  //         ) : (
-  //           <MaterialIcons name="search" size={24} color="white" />
-  //         )}
-  //       </TouchableOpacity>
-  //     </View>
-
-  //     {isLoading ? (
-  //       <ActivityIndicator size="large" style={styles.loader} />
-  //     ) : kanjiResults && kanjiResults.length > 0 ? (
-  //       <ScrollView style={styles.resultsContainer}>
-  //         {kanjiResults.map((kanji, index) => {
-  //           // Kiểm tra nếu có thông báo lỗi
-  //           if (kanji.kanji.meaning.english.includes("Error")) {
-  //             return (
-  //               <View key={index} style={styles.errorCard}>
-  //                 <Text style={styles.errorText}>
-  //                   {kanji.kanji.meaning.english}
-  //                 </Text>
-  //                 <Text style={styles.errorHelpText}>
-  //                   Please try again later or check your internet connection
-  //                 </Text>
-  //               </View>
-  //             );
-  //           }
-
-  //           return (
-  //             <TouchableOpacity
-  //               key={index}
-  //               style={styles.kanjiCard}
-  //               onPress={() => setSelectedKanji(kanji)}
-  //             >
-  //               <Text style={styles.kanjiCharacter}>
-  //                 {kanji.kanji.character || "N/A"}
-  //               </Text>
-  //               <View style={styles.kanjiInfo}>
-  //                 <Text style={styles.kanjiMeaning}>
-  //                   {kanji.kanji.meaning.english}
-  //                 </Text>
-  //                 <Text style={styles.kanjiReading}>
-  //                   On: {kanji.kanji.onyomi.katakana}
-  //                 </Text>
-  //                 <Text style={styles.kanjiReading}>
-  //                   Kun: {kanji.kanji.kunyomi.hiragana}
-  //                 </Text>
-  //               </View>
-  //             </TouchableOpacity>
-  //           );
-  //         })}
-  //       </ScrollView>
-  //     ) : (
-  //       <Text style={styles.noResults}>
-  //         {searchTerm
-  //           ? searchTerm.length > 1
-  //             ? "Please enter only one kanji character"
-  //             : "No kanji found or API error"
-  //           : "Search for a kanji character"}
-  //       </Text>
-  //     )}
-  //   </View>
-  // );
 
   const renderListeningTab = () => (
     <View style={styles.tabContent}>
@@ -743,11 +660,9 @@ const StudyPage = () => {
     let grammarItems = [];
 
     if (selectedCategory) {
-      // Nếu người dùng đã chọn category cụ thể
       category = selectedCategory;
       grammarItems = grammarData[category] || [];
     } else {
-      // Logic cũ tự động chọn theo level
       if (["N5", "N4"].includes(userLevel)) {
         category = "basic";
       } else if (["N3", "N2"].includes(userLevel)) {
@@ -853,25 +768,6 @@ const StudyPage = () => {
           </Text>
         </TouchableOpacity>
 
-        {/* <TouchableOpacity
-          style={[styles.tabButton, activeTab === "kanji" && styles.activeTab]}
-          onPress={() => setActiveTab("kanji")}
-        >
-          <MaterialIcons
-            name="translate"
-            size={24}
-            color={activeTab === "kanji" ? "#4a86e8" : "#666"}
-          />
-          <Text
-            style={[
-              styles.tabText,
-              activeTab === "kanji" && styles.activeTabText,
-            ]}
-          >
-            Kanji
-          </Text>
-        </TouchableOpacity> */}
-
         <TouchableOpacity
           style={[
             styles.tabButton,
@@ -941,7 +837,6 @@ const StudyPage = () => {
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {activeTab === "dictionary" && renderDictionaryTab()}
-        {/* {activeTab === "kanji" && renderKanjiTab()} */}
         {activeTab === "listening" && renderListeningTab()}
         {activeTab === "speaking" && renderSpeakingTab()}
         {activeTab === "grammar" && renderGrammarTab()}
