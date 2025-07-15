@@ -13,9 +13,7 @@ import { BookOpen, BarChart, Award, Clock } from "lucide-react-native";
 import Header from "../../components/Header";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../context/AuthContext";
-
 const PAGE_SIZE = 10;
-
 // JLPT levels (Beginner to Proficient)
 const initialJlpt = [
   { level: "N1", name: "Proficient Level", progress: 0, color: "#bfdbfe" },
@@ -24,7 +22,6 @@ const initialJlpt = [
   { level: "N4", name: "Basic Level", progress: 0, color: "#fed7aa" },
   { level: "N5", name: "Beginner Level", progress: 0, color: "#fecaca" },
 ];
-
 const ProgressBar = ({ progress, color }) => (
   <View style={styles.progressBarContainer}>
     <View
@@ -35,7 +32,6 @@ const ProgressBar = ({ progress, color }) => (
     />
   </View>
 );
-
 const StatCard = ({ title, value, description, Icon }) => (
   <View style={styles.statCard}>
     <View style={styles.cardHeader}>
@@ -48,7 +44,6 @@ const StatCard = ({ title, value, description, Icon }) => (
     </View>
   </View>
 );
-
 const ActivityItem = ({ item }) => {
   const Icon = item.icon === "BookOpen" ? BookOpen : Award;
   return (
@@ -64,7 +59,6 @@ const ActivityItem = ({ item }) => {
     </View>
   );
 };
-
 export default function ProgressPage() {
   const { user } = useContext(AuthContext);
   const [history, setHistory] = useState([]);
@@ -288,104 +282,3 @@ export default function ProgressPage() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f9fafb" },
-  scrollContainer: { padding: 16 },
-  header: { alignItems: "center", marginBottom: 24 },
-  headerTitle: { fontSize: 28, fontWeight: "bold", color: "#111827" },
-  headerSubtitle: { fontSize: 16, color: "#6b7280", textAlign: "center" },
-  statsGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    marginBottom: 24,
-    gap: 16,
-  },
-  statCard: {
-    width: "48%",
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 16,
-    elevation: 2,
-  },
-  cardHeader: { marginBottom: 12 },
-  cardTitle: { fontSize: 16, fontWeight: "600", color: "#111827" },
-  cardDescription: { fontSize: 12, color: "#6b7280" },
-  cardContent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  cardValue: { fontSize: 24, fontWeight: "bold", color: "#111827" },
-  tabsContainer: { marginBottom: 24 },
-  tabsHeader: {
-    flexDirection: "row",
-    backgroundColor: "#f3f4f6",
-    borderRadius: 8,
-    padding: 4,
-    marginBottom: 16,
-  },
-  tabButton: { flex: 1, paddingVertical: 8, alignItems: "center" },
-  activeTab: { backgroundColor: "#fff", elevation: 2 },
-  tabText: { fontSize: 14, fontWeight: "500", color: "#6b7280" },
-  activeTabText: { color: "#111827" },
-  tabContent: { gap: 16 },
-  sectionCard: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 16,
-    elevation: 2,
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#111827",
-    marginBottom: 4,
-  },
-  sectionSubtitle: { fontSize: 14, color: "#6b7280", marginBottom: 12 },
-  progressList: { gap: 16 },
-  progressItem: { marginBottom: 12 },
-  progressHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 8,
-  },
-  levelBadge: {
-    backgroundColor: "#f3f4f6",
-    borderRadius: 4,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    marginRight: 8,
-  },
-  levelText: { fontSize: 12, fontWeight: "600" },
-  levelName: { flex: 1, fontSize: 14, color: "#374151" },
-  progressPercent: { fontSize: 12, color: "#6b7280" },
-  progressBarContainer: {
-    height: 4,
-    backgroundColor: "#e5e7eb",
-    borderRadius: 2,
-    overflow: "hidden",
-  },
-  progressBar: { height: "100%", borderRadius: 2 },
-  activityItem: {
-    flexDirection: "row",
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f3f4f6",
-  },
-  activityIcon: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#eff6ff",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 12,
-  },
-  activityContent: { flex: 1 },
-  activityTitle: { fontSize: 14, fontWeight: "600", color: "#111827" },
-  activityDesc: { fontSize: 12, color: "#6b7280" },
-  activityTime: { fontSize: 11, color: "#9ca3af" },
-});
