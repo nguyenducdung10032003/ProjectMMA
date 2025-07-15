@@ -13,9 +13,7 @@ import { BookOpen, BarChart, Award, Clock } from "lucide-react-native";
 import Header from "../../components/Header";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../context/AuthContext";
-
 const PAGE_SIZE = 10;
-
 // JLPT levels (Beginner to Proficient)
 const initialJlpt = [
   { level: "N1", name: "Proficient Level", progress: 0, color: "#bfdbfe" },
@@ -24,7 +22,6 @@ const initialJlpt = [
   { level: "N4", name: "Basic Level", progress: 0, color: "#fed7aa" },
   { level: "N5", name: "Beginner Level", progress: 0, color: "#fecaca" },
 ];
-
 const ProgressBar = ({ progress, color }) => (
   <View style={styles.progressBarContainer}>
     <View
@@ -35,7 +32,6 @@ const ProgressBar = ({ progress, color }) => (
     />
   </View>
 );
-
 const StatCard = ({ title, value, description, Icon }) => (
   <View style={styles.statCard}>
     <View style={styles.cardHeader}>
@@ -48,7 +44,6 @@ const StatCard = ({ title, value, description, Icon }) => (
     </View>
   </View>
 );
-
 const ActivityItem = ({ item }) => {
   const Icon = item.icon === "BookOpen" ? BookOpen : Award;
   return (
@@ -64,7 +59,6 @@ const ActivityItem = ({ item }) => {
     </View>
   );
 };
-
 export default function ProgressPage() {
   const { user } = useContext(AuthContext);
   const [history, setHistory] = useState([]);
@@ -288,7 +282,6 @@ export default function ProgressPage() {
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f9fafb" },
   scrollContainer: { padding: 16 },
