@@ -162,7 +162,7 @@ const ProfilePage = () => {
       <Header />
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>プロフィール</Text>
+          <Text style={styles.headerTitle}>Ruby Chan Profile</Text>
           <Text style={styles.headerSubtitle}>
             Manage your profile and preferences
           </Text>

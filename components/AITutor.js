@@ -7,7 +7,8 @@ import {
   ScrollView,
   StyleSheet,
   SafeAreaView,
-  ActivityIndicator
+  ActivityIndicator,
+  Image,
 } from "react-native";
 import { Card } from "react-native-paper";
 import {
@@ -23,7 +24,8 @@ export function AITutor() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "こんにちは！私はあなたの日本語の先生です。\n何を学びたいですか？\n\n(Hello! I'm your Japanese teacher.\nWhat would you like to learn?)",
+      content:
+        "こんにちは！私はあなたの日本語の先生です。\n何を学びたいですか？\n\n(Hello! I'm your Japanese teacher.\nWhat would you like to learn?)",
       type: "encouragement",
     },
   ]);
@@ -53,12 +55,15 @@ export function AITutor() {
 
     try {
       const grammarFocus = ["は vs が", "て-form", "です/である"];
-      const aiResponse = await generateAIResponse(updatedMessages, grammarFocus);
-      
+      const aiResponse = await generateAIResponse(
+        updatedMessages,
+        grammarFocus
+      );
+
       // Format response to preserve line breaks
-      const formattedResponse = aiResponse.replace(/\n/g, '\n');
-      
-      setMessages(prev => [
+      const formattedResponse = aiResponse.replace(/\n/g, "\n");
+
+      setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
@@ -68,7 +73,7 @@ export function AITutor() {
       ]);
     } catch (error) {
       console.error("Error:", error);
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
@@ -105,7 +110,14 @@ export function AITutor() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.header}>
-          <Text style={styles.title}>🤖 AI Tutor</Text>
+          <View style={styles.headerContent}>
+            <Image
+              source={require("../assets/logo-ruby-chan.jpg")}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+            <Text style={styles.title}>Ruby Chan AI</Text>
+          </View>
           <Text style={styles.subtitle}>
             Get personalized help with Japanese grammar and language learning
           </Text>
@@ -137,7 +149,7 @@ export function AITutor() {
             </View>
 
             {/* Chat Messages */}
-            <ScrollView 
+            <ScrollView
               style={styles.chatContainer}
               contentContainerStyle={styles.chatContentContainer}
             >
@@ -188,7 +200,9 @@ export function AITutor() {
                 <View style={styles.assistantMessageContainer}>
                   <View style={styles.assistantMessageContent}>
                     <ActivityIndicator size="small" color="#3b82f6" />
-                    <Text style={{marginLeft: 8}}>考え中... (Thinking...)</Text>
+                    <Text style={{ marginLeft: 8 }}>
+                      考え中... (Thinking...)
+                    </Text>
                   </View>
                 </View>
               )}
@@ -209,7 +223,7 @@ export function AITutor() {
               <TouchableOpacity
                 style={[
                   styles.sendButton,
-                  (!input.trim() || isLoading) && styles.disabledButton
+                  (!input.trim() || isLoading) && styles.disabledButton,
                 ]}
                 onPress={handleSendMessage}
                 disabled={!input.trim() || isLoading}
@@ -374,5 +388,34 @@ const styles = StyleSheet.create({
   },
   disabledButton: {
     backgroundColor: "#9ca3af",
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 20,
+    width: "100%",
+  },
+  headerContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 8,
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    marginRight: 12,
+    borderRadius: 20, // Nếu muốn bo tròn
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#666",
+    textAlign: "center",
+    maxWidth: "80%",
+    lineHeight: 20,
   },
 });

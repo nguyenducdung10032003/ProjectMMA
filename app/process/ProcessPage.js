@@ -136,7 +136,7 @@ export default function ProgressPage() {
       <Header />
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>学習の進捗</Text>
+          <Text style={styles.headerTitle}>Ruby Chan Process</Text>
           <Text style={styles.headerSubtitle}>
             Track your Japanese grammar learning progress
           </Text>

@@ -632,22 +632,17 @@ const StudyPage = () => {
   };
   const renderCategorySelector = () => (
     <View style={styles.categorySelector}>
-      <Text style={styles.selectorTitle}>Choose by:</Text>
       <View style={styles.selectorButtons}>
         <Button
-          title="Level (N5-N1)"
-          onPress={() => setSelectedCategory(null)}
-        />
-        <Button
-          title="Basic (N5-N4)"
+          title="Basic (N5)"
           onPress={() => setSelectedCategory("basic")}
         />
         <Button
-          title="Intermediate (N3-N2)"
+          title="Intermediate (N4-N3)"
           onPress={() => setSelectedCategory("intermediate")}
         />
         <Button
-          title="Advanced (N1)"
+          title="Advanced (N2-N1)"
           onPress={() => setSelectedCategory("advanced")}
         />
       </View>
@@ -677,13 +672,6 @@ const StudyPage = () => {
     return (
       <View style={styles.tabContent}>
         {renderCategorySelector()}
-        <View style={styles.header}>
-          <Text style={styles.title}>Japanese Grammar</Text>
-          <Text style={styles.subtitle}>
-            Study Japanese grammar patterns and structures
-          </Text>
-        </View>
-
         <View style={styles.grammarContentContainer}>
           {grammarItems.map((item, index) => (
             <View key={`${item.title}-${index}`} style={styles.grammarItem}>
